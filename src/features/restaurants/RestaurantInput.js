@@ -13,23 +13,20 @@ function RestaurantInput({ onRestaurantSubmit }) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label for="name">
-          Name
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={name}
-            placeholder="Enter restaurant name"
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <input type="submit" value= "Add Restaurant" />
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Name
+        <input
+          type="text"
+          name="name"
+          value={name}
+          placeholder="Enter restaurant name"
+          onChange={handleInputChange}
+          required
+        />
+      </label>
+      <input type="submit" value="Add Restaurant" />
+    </form>
   );
 }
 

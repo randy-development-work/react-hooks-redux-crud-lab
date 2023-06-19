@@ -15,7 +15,7 @@ function RestaurantsContainer() {
 
   return (
     <div>
-      <RestaurantInput onRestaurantSUbmit={handleSubmit}/>
+      <RestaurantInput onRestaurantSubmit={handleSubmit}/>
       <Restaurants restaurants={restaurants} />
     </div>
   );

@@ -1,14 +1,11 @@
 import React from "react";
+import Restaurant from "./Restaurant";
 
 function Restaurants({ restaurants }) {
+  const entities = restaurants.map((entity) => <Restaurant key={entity.id} restaurant={entity}/>)
   return (
     <ul>
-      {restaurants.map((rest) => {
-        <li key={rest.id}>
-          {rest.name}
-          <button>Delete Restaurant</button>
-        </li>
-      })}
+      {entities}
     </ul>
   );
 }
