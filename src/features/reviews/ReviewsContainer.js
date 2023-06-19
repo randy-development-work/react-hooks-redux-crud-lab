@@ -9,12 +9,12 @@ function ReviewsContainer({ restaurant }) {
   const reviews = useSelector((state) => state.reviews.entities);
 
   function onReviewSubmit(name) {
-    dispatch(reviewAdded(name));
+    dispatch(reviewAdded(name, restaurant.id));
   }
 
   return (
     <div>
-      <ReviewInput onReviewSubmit={onReviewSubmit}/>
+      <ReviewInput onReviewSubmit={onReviewSubmit} restaurant={restaurant} />
       <Reviews reviews={reviews}/>
     </div>
   );

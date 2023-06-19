@@ -15,7 +15,12 @@ function Restaurant({ restaurant }) {
       <li>
         {restaurant.name}
         <button onClick={handleDelete}> Delete Restaurant </button>
+        <br />
+        <br />
         <ReviewsContainer restaurant={restaurant} />
+        <br />
+        <br />
+        <br />
       </li>
     </div>
   );

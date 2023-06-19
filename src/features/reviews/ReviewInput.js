@@ -18,7 +18,12 @@ function ReviewInput({ onReviewSubmit }) {
     <form onSubmit={handleSubmit}>
       <label>
         Comment
-        <textarea name="comment" onChange={handleInputChange} value={comment} />
+        <textarea
+          name="comment"
+          onChange={handleInputChange}
+          value={comment}
+          placeholder="Enter your Review..."
+        />
       </label>
       <input type="submit" value="Add Review" />
     </form>
