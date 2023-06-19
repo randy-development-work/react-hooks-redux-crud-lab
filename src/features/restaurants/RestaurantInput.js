@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { restaurantAdded } from "./restaurantsSlice";
 
-function RestaurantInput({ onRestaurantSubmit }) {
+function RestaurantInput() {
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
 
   function handleSubmit(event) {
     event.preventDefault();
-    onRestaurantSubmit(name);
+    dispatch(restaurantAdded(name));
+    setName("");
   }
 
   function handleInputChange(event) {
@@ -22,7 +26,6 @@ function RestaurantInput({ onRestaurantSubmit }) {
           value={name}
           placeholder="Enter restaurant name"
           onChange={handleInputChange}
-          required
         />
       </label>
       <input type="submit" value="Add Restaurant" />

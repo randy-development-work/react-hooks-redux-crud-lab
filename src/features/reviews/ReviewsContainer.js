@@ -1,12 +1,21 @@
 import React from "react";
 import ReviewInput from "./ReviewInput";
 import Reviews from "./Reviews";
+import { useSelector, useDispatch } from "react-redux";
+import { reviewAdded } from "./reviewsSlice";
 
 function ReviewsContainer({ restaurant }) {
+  const dispatch = useDispatch();
+  const reviews = useSelector((state) => state.reviews.entities);
+
+  function onReviewSubmit(name) {
+    dispatch(reviewAdded(name));
+  }
+
   return (
     <div>
-      <ReviewInput />
-      <Reviews />
+      <ReviewInput onReviewSubmit={onReviewSubmit}/>
+      <Reviews reviews={reviews}/>
     </div>
   );
 }

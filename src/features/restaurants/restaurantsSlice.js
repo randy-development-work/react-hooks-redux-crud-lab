@@ -10,7 +10,7 @@ const restaurantsSlice = createSlice({
     restaurantAdded(state, action){
       state.entities.push({
         id: uuid(),
-        ...action.payload,
+        name: action.payload,
       });
     },
     restaurantRemoved(state, action) {
