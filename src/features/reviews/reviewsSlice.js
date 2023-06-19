@@ -10,7 +10,7 @@ const reviewsSlice = createSlice({
     reviewAdded(state, action) {
       state.entities.push({
         id: uuid(),
-        comment: action.payload,
+        ...action.payload,
       });
     },
     reviewRemoved(state, action) {

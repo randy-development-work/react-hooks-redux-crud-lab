@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import Reviews from "./Reviews";
+import { reviewAdded } from "./reviewsSlice";
+import { useDispatch } from "react-redux";
 
-function ReviewInput({ onReviewSubmit }) {
+function ReviewInput({ restaurantId }) {
   const [comment, setComment] = useState("");
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    onReviewSubmit(comment);
-    setComment("");
-  }
+  const dispatch = useDispatch();
 
   function handleInputChange(event) {
     setComment(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    dispatch(reviewAdded({ comment, restaurantId }));
+    setComment("");
   }
 
   return (

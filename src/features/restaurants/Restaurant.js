@@ -17,7 +17,7 @@ function Restaurant({ restaurant }) {
         <button onClick={handleDelete}> Delete Restaurant </button>
         <br />
         <br />
-        <ReviewsContainer restaurant={restaurant} />
+        <ReviewsContainer restaurantId={restaurant.id} />
         <br />
         <br />
         <br />
