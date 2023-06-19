@@ -3,7 +3,7 @@ import RestaurantInput from "./RestaurantInput";
 import Restaurants from "./Restaurants";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { restaurantAdded, restaurantRemoved, restaurantEdited } from "./restaurantsSlice";
+import { restaurantAdded } from "./restaurantsSlice";
 
 function RestaurantsContainer() {
   const dispatch = useDispatch();
