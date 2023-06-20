@@ -1,26 +1,47 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { restaurantEdited } from "./restaurantsSlice";
 
 function EditRestaurant() {
-    let navigator = useNavigate();
+  let navigator = useNavigate();
+  let params = useParams();
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        navigator("/");
-    }
+  const restaurantData = useSelector((state) =>
+    state.restaurants.entities.filter(
+      (r) => r.restaurantId === params.restaurantId
+    )
+  );
+  console.log(restaurantData);
+  const [name, setName] = useState('');
+  const id = params.restaurantId
+  const dispatch = useDispatch();
+
+  function handleInputChange(event) {
+    setName(event.target.value);
+  }
+
+  console.log(name);
+
+
+  function handleEdit() {
+    dispatch(restaurantEdited(id, name))
+    navigator("/");
+  }
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label>
           Edit Restaurant Name
           <input
             type="text"
             name="name"
-            // value={name}
-            placeholder="Enter restaurant name"
-            // onChange={handleInputChange}
+            value={name}
+            // placeholder={restaurantData[0].name}
+            onChange={handleInputChange}
           />
         </label>
-        <input type="submit" value="Edit Restaurant" />
+        <button onClick={handleEdit}>Edit Restaurant</button>
       </form>
     </div>
   );

@@ -18,7 +18,12 @@ const restaurantsSlice = createSlice({
       state.entities.splice(index, 1);
     },
     restaurantEdited(state, action) {
-      state.entities[action.payload.id] = action.payload.name;
+      // state.entities[action.payload.id] = action.payload.name;
+      const { id, newName } = action.payload;
+      const restaurant = state.entities.find((r) => r.id === id);
+      if (restaurant) {
+        state.entities.name = newName;
+      }
     },
   },
 });
