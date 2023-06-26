@@ -14,7 +14,7 @@ function EditRestaurant() {
   );
   // console.log(restaurantData);
 
-  const allRestaurants = useSelector((state) => state.restaurants.entities)
+  // const allRestaurants = useSelector((state) => state.restaurants.entities)
 
   const eachrestaurant = restaurantData.map((rest) => {
     return (
@@ -24,7 +24,7 @@ function EditRestaurant() {
     )
   })
 
-  const [name, setName] = useState('');
+  const [name, setName] = useState(restaurantData?.[0]?.name);
   const id = params.restaurantId
   const dispatch = useDispatch();
 
@@ -43,12 +43,13 @@ function EditRestaurant() {
     <div>
       <form>
         <label>
-          Edit Restaurant Name
+          Edit Restaurant Name:
+          &nbsp;
           <input
             type="text"
             name="name"
             value={name}
-            placeholder={restaurantData[0].name}
+            placeholder={restaurantData?.[0]?.name}
             onChange={handleInputChange}
           />
         </label>
