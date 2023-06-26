@@ -8,9 +8,7 @@ function EditRestaurant() {
   let params = useParams();
 
   const restaurantData = useSelector((state) =>
-    state.restaurants.entities.filter(
-      (r) => r.id === params.restaurantID
-    )
+    state.restaurants.entities.filter((r) => r.id === params.restaurantID)
   );
   // console.log(restaurantData);
 
@@ -21,12 +19,13 @@ function EditRestaurant() {
       <ul>
         <li key={rest.id}>{rest.name}</li>
       </ul>
-    )
-  })
+    );
+  });
 
   const [name, setName] = useState(restaurantData?.[0]?.name);
-  const id = params.restaurantId
+  const id = params.restaurantID;
   const dispatch = useDispatch();
+  console.log(id);
 
   function handleInputChange(event) {
     setName(event.target.value);
@@ -34,17 +33,21 @@ function EditRestaurant() {
 
   console.log(name);
 
-
-  function handleEdit() {
-    dispatch(restaurantEdited(id, name))
-    // navigator("/");
+  function handleEdit(event) {
+    event.preventDefault();
+    dispatch(
+      restaurantEdited({
+        id,
+        name,
+      })
+    );
+    navigator("/");
   }
   return (
     <div>
-      <form>
+      <form onSubmit={handleEdit}>
         <label>
-          Edit Restaurant Name:
-          &nbsp;
+          Edit Restaurant Name: &nbsp;
           <input
             type="text"
             name="name"
@@ -53,7 +56,7 @@ function EditRestaurant() {
             onChange={handleInputChange}
           />
         </label>
-        <button onClick={handleEdit}>Edit Restaurant</button>
+        <button type="submit">Edit Restaurant</button>
       </form>
       {/* {eachrestaurant} */}
     </div>
