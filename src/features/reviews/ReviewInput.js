@@ -19,7 +19,8 @@ function ReviewInput({ restaurantId }) {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Comment
+        Comment:
+        <br />
         <textarea
           name="comment"
           onChange={handleInputChange}
@@ -27,7 +28,10 @@ function ReviewInput({ restaurantId }) {
           placeholder="Enter your Review..."
         />
       </label>
+      <br />
       <input type="submit" value="Add Review" />
+      <br />
+      <br />
     </form>
   );
 }
