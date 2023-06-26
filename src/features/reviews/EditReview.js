@@ -9,9 +9,12 @@ function EditReview() {
 
   const reviewData = useSelector((state) =>
     state.reviews.entities.filter(
-      (r) => r.reviewId === params.reviewId
+      (r) => r.id === params.reviewID
     )
   );
+  console.log(reviewData);
+
+  const allRestaurants = useSelector((state) => state.restaurants.entities)
 
   const [editData, setEditData] = useState([]);
   const id = params.reviewId

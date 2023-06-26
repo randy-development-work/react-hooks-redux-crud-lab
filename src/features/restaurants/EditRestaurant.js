@@ -9,10 +9,12 @@ function EditRestaurant() {
 
   const restaurantData = useSelector((state) =>
     state.restaurants.entities.filter(
-      (r) => r.restaurantId === params.restaurantId
+      (r) => r.id === params.restaurantID
     )
   );
-  console.log(restaurantData);
+  // console.log(restaurantData);
+
+  const allRestaurants = useSelector((state) => state.restaurants.entities)
 
   const eachrestaurant = restaurantData.map((rest) => {
     return (
