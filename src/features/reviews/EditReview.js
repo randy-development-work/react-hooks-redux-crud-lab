@@ -14,34 +14,39 @@ function EditReview() {
 
   const allRestaurants = useSelector((state) => state.restaurants.entities);
 
-  const restaurantReviews = useSelector((state) => state.restaurants.entities.filter(r => r.id === reviewData?.[0].restaurantId));
+  const restaurantReviews = useSelector((state) =>
+    state.restaurants.entities.filter(
+      (r) => r.id === reviewData?.[0]?.restaurantId
+    )
+  );
 
-  const [editData, setEditData] = useState(reviewData);
-  // console.log(editData?.[0].comment);
-  const id = params.reviewId;
+  const [editData, setEditData] = useState(reviewData[0]);
+  // console.log(editData?.comment);
+  const id = params.reviewID;
   const dispatch = useDispatch();
 
   function handleInputChange(event) {
     // setName(event.target.value);
     const key = event.target.name;
-    const value = event.target.value;
+    const val = event.target.value;
 
-    setEditData({ ...editData, key, value });
+    setEditData({ ...editData, [key]: val });
   }
-  function handleEdit() {
+  function handleEdit(event) {
+    event.preventDefault();
     dispatch(reviewEdited({ id, editData }));
-    // navigator("/");
+    navigator("/");
   }
   return (
     <div>
-      <form>
+      <form onSubmit={handleEdit}>
         <label>
           Edit Review Comment: &nbsp;
           <input
             type="text"
             name="comment"
-            value={editData?.[0]?.comment}
-            // placeholder={restaurantData[0].name}
+            value={editData?.comment}
+            placeholder={reviewData?.[0]?.comment}
             onChange={handleInputChange}
           />
         </label>
@@ -65,7 +70,7 @@ function EditReview() {
         </select>
         <br />
         <br />
-        <button onClick={handleEdit}>Edit Review</button>
+        <button type="submit">Edit Review</button>
       </form>
     </div>
   );

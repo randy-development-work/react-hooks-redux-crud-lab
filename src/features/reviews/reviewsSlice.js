@@ -20,11 +20,11 @@ const reviewsSlice = createSlice({
       state.entities.splice(index, 1);
     },
     reviewEdited(state, action) {
-      const { id, newData } = action.payload;
+      const { id, editData } = action.payload;
       const revIndex = state.entities.findIndex((res) => res.id === id);
 
       if (revIndex !== -1) {
-        state.entities[revIndex] = { id, ...newData };
+        state.entities[revIndex] = { id, ...editData };
       }
     },
   },
