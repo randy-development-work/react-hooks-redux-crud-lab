@@ -8,9 +8,21 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<RestaurantsContainer />} />
-        <Route path="/edit-restaurant/:restaurantID" element={<EditRestaurant />} />
-        <Route path="/review-edit/:reviewID" element={<EditReview />} />
+        <Route
+          path="/"
+          element={
+            <div>
+              <RestaurantsContainer />
+              <Outlet />
+            </div>
+          }
+        >
+          <Route path="/review-edit/:reviewID" element={<EditReview />} />
+        </Route>
+        <Route
+          path="/edit-restaurant/:restaurantID"
+          element={<EditRestaurant />}
+        />
       </Routes>
     </div>
   );

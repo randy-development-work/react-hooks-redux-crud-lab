@@ -13,6 +13,15 @@ function EditRestaurant() {
     )
   );
   console.log(restaurantData);
+
+  const eachrestaurant = restaurantData.map((rest) => {
+    return (
+      <ul>
+        <li key={rest.id}>{rest.name}</li>
+      </ul>
+    )
+  })
+
   const [name, setName] = useState('');
   const id = params.restaurantId
   const dispatch = useDispatch();
@@ -26,7 +35,7 @@ function EditRestaurant() {
 
   function handleEdit() {
     dispatch(restaurantEdited(id, name))
-    navigator("/");
+    // navigator("/");
   }
   return (
     <div>
@@ -37,12 +46,13 @@ function EditRestaurant() {
             type="text"
             name="name"
             value={name}
-            // placeholder={restaurantData[0].name}
+            placeholder={restaurantData[0].name}
             onChange={handleInputChange}
           />
         </label>
         <button onClick={handleEdit}>Edit Restaurant</button>
       </form>
+      {/* {eachrestaurant} */}
     </div>
   );
 }
