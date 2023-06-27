@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RestaurantInput from "./RestaurantInput";
 import Restaurants from "./Restaurants";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchRestaurants } from "./restaurantsSlice";
 
-function RestaurantsContainer() {
-  const restaurants = useSelector((state) => state.restaurants.entities);
-  
+function RestaurantsContainer({restaurants}) {
+  console.log(restaurants);
+
   return (
     <div>
       <RestaurantInput />

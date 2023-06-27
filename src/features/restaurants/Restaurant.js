@@ -11,6 +11,7 @@ function Restaurant({ restaurant }) {
   function handleDelete() {
     dispatch(restaurantRemoved(restaurant.id));
   }
+  
 
   return (
     <div>

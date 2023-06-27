@@ -1,10 +1,38 @@
 import { v4 as uuid } from "uuid";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import API_BASE_URL from "../../utilities/env";
+import axios from "axios";
+
+// export const fetchRestaurants = createAsyncThunk("restaurants/fetchRestaurants", () => {
+//   return fetch(`${API_BASE_URL}/restaurants`)
+//   .then(response => response.json)
+//   .then(data => data)
+// });
+
+export const fetchRestaurants = createAsyncThunk(
+  "restaurant/fetchRestaurants",
+  async () => {
+    const response = await axios.get(`${API_BASE_URL}/restaurants`);
+    return response.data;
+  }
+);
+
+export const updateRestaurant = createAsyncThunk(
+  "restaurant/updateRestaurant",
+  async ({ id, name }) => {
+    const response = await axios.patch(`${API_BASE_URL}/restaurants/${id}`, {
+      name,
+    });
+    return response.data;
+  }
+);
 
 const restaurantsSlice = createSlice({
   name: "restaurants",
   initialState: {
     entities: [],
+    status: "idle",
+    error: null,
   },
 
   reducers: {
@@ -29,6 +57,20 @@ const restaurantsSlice = createSlice({
         // localStorage.setItem('restaurants', JSON.stringify(state.entities));
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchRestaurants.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchRestaurants.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.restaurants = action.payload;
+      })
+      .addCase(fetchRestaurants.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
   },
 });
 

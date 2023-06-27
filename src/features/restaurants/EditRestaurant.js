@@ -1,16 +1,17 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { restaurantEdited } from "./restaurantsSlice";
+import { restaurantEdited, updateRestaurant } from "./restaurantsSlice";
 
-function EditRestaurant() {
+function EditRestaurant({ restaurants }) {
   let navigator = useNavigate();
   let params = useParams();
 
-  const restaurantData = useSelector((state) =>
-    state.restaurants.entities.filter((r) => r.id === params.restaurantID)
-  );
-  // console.log(restaurantData);
+  const restaurantData = restaurants.filter(r => r.id == params.restaurantID);
+  let r = restaurants.filter(r => r.id === 1)
+  // console.log(r);
+  console.log(restaurantData?.[0]?.name);
+  // console.log("params", params.restaurantID);
 
   // const allRestaurants = useSelector((state) => state.restaurants.entities)
 
@@ -36,7 +37,7 @@ function EditRestaurant() {
   function handleEdit(event) {
     event.preventDefault();
     dispatch(
-      restaurantEdited({
+      updateRestaurant({
         id,
         name,
       })
