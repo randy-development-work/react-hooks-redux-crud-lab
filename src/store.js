@@ -27,10 +27,11 @@ const rootReducer = combineReducers({
 // });
 
 const store = configureStore({
-  reducer: {
-    restaurants: restaurantsReducer,
-    reviews: reviewsReducer,
-  },
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 const persistor = persistStore(store);

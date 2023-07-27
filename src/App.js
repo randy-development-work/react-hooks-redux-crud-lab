@@ -11,9 +11,13 @@ function App() {
   const entities = useSelector((state) => state.restaurants.entities);
 
   const [restaurants, setRestaurants] = useState(entities)
+
   useEffect(() => {
     dispatch(fetchRestaurants());
   }, [dispatch]);
+  
+  const lols = useSelector((state) => state.restaurants.restaurants);
+  console.log(useSelector((state) => state.restaurants));
 
   return (
     <div>
@@ -22,7 +26,7 @@ function App() {
           path="/"
           element={
             <div>
-              <RestaurantsContainer restaurants={restaurants} />
+              <RestaurantsContainer restaurants={lols} />
               <Outlet />
             </div>
           }
@@ -31,7 +35,7 @@ function App() {
         </Route>
         <Route
           path="/edit-restaurant/:restaurantID"
-          element={<EditRestaurant restaurants={restaurants} setRestaurants={setRestaurants}/>}
+          element={<EditRestaurant restaurants={lols}/>}
         />
       </Routes>
     </div>

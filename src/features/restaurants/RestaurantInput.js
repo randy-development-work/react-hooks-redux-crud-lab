@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { restaurantAdded } from "./restaurantsSlice";
+import { createRestaurant } from "./restaurantsSlice";
 
 function RestaurantInput() {
   const [name, setName] = useState("");
@@ -8,8 +9,10 @@ function RestaurantInput() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(restaurantAdded(name));
-    setName("");
+    dispatch(createRestaurant({name: name}));
+    // setName({name:""});
+    // alert("New Restaurant Added...")
+    event.target.reset()
   }
 
   function handleInputChange(event) {

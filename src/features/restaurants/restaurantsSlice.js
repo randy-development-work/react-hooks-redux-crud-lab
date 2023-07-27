@@ -17,6 +17,14 @@ export const fetchRestaurants = createAsyncThunk(
   }
 );
 
+export const createRestaurant = createAsyncThunk(
+  'restaurant/createRestaurant',
+  async (restaurantData) => {
+    const response = await axios.post(`${API_BASE_URL}/restaurants`, restaurantData);
+    return response.data;
+  }
+);
+
 export const updateRestaurant = createAsyncThunk(
   "restaurant/updateRestaurant",
   async ({ id, name }) => {
@@ -36,6 +44,9 @@ const restaurantsSlice = createSlice({
   },
 
   reducers: {
+    setRestaurants(state, action) {
+      state.entities = action.payload;
+    },
     restaurantAdded(state, action) {
       state.entities.push({
         id: uuid(),

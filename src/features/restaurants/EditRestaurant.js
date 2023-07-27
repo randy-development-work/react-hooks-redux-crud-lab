@@ -15,13 +15,13 @@ function EditRestaurant({ restaurants }) {
 
   // const allRestaurants = useSelector((state) => state.restaurants.entities)
 
-  const eachrestaurant = restaurantData.map((rest) => {
-    return (
-      <ul>
-        <li key={rest.id}>{rest.name}</li>
-      </ul>
-    );
-  });
+  // const eachrestaurant = restaurantData.map((rest) => {
+  //   return (
+  //     <ul>
+  //       <li key={rest.id}>{rest.name}</li>
+  //     </ul>
+  //   );
+  // });
 
   const [name, setName] = useState(restaurantData?.[0]?.name);
   const id = params.restaurantID;

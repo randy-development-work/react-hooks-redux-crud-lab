@@ -12,7 +12,6 @@ function Restaurant({ restaurant }) {
     dispatch(restaurantRemoved(restaurant.id));
   }
   
-
   return (
     <div>
       <li>
