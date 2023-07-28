@@ -10,9 +10,9 @@ function RestaurantInput() {
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(createRestaurant({name: name}));
-    // setName({name:""});
-    // alert("New Restaurant Added...")
-    event.target.reset()
+    setName("");
+    alert("New Restaurant Added...")
+    // event.target.reset()
   }
 
   function handleInputChange(event) {
