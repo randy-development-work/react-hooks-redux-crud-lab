@@ -1,6 +1,6 @@
 import React from "react";
 import ReviewsContainer from "../reviews/ReviewsContainer";
-import { restaurantRemoved, restaurantEdited } from "./restaurantsSlice";
+import { restaurantRemoved, restaurantEdited, deleteRestaurant } from "./restaurantsSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ function Restaurant({ restaurant }) {
   let navigator = useNavigate();
 
   function handleDelete() {
-    dispatch(restaurantRemoved(restaurant.id));
+    dispatch(deleteRestaurant(restaurant.id));
   }
   
   return (

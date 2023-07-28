@@ -26,13 +26,13 @@ function EditRestaurant({ restaurants }) {
   const [name, setName] = useState(restaurantData?.[0]?.name);
   const id = params.restaurantID;
   const dispatch = useDispatch();
-  console.log(id);
+  // console.log(id);
 
   function handleInputChange(event) {
     setName(event.target.value);
   }
 
-  console.log(name);
+  console.log("Rest-name", name);
 
   function handleEdit(event) {
     event.preventDefault();

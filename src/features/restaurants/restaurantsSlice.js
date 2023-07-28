@@ -35,6 +35,14 @@ export const updateRestaurant = createAsyncThunk(
   }
 );
 
+export const deleteRestaurant = createAsyncThunk(
+  'restaurant/deleteRestaurant',
+  async (id) => {
+    await axios.delete(`${API_BASE_URL}/restaurants/${id}`)
+    return id; // Return the ID of the deleted restaurant to update the state.
+  }
+)
+
 const restaurantsSlice = createSlice({
   name: "restaurants",
   initialState: {
